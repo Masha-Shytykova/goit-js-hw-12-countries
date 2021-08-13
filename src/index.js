@@ -2,6 +2,11 @@ import listTemplate from '../src/templates/list.hbs';
 import cardTemplate from '../src/templates/card.hbs';
 import API from './fetchCountries.js';
 import { debounce } from 'debounce';
+import '@pnotify/core/dist/PNotify.css';
+import { error } from '@pnotify/core';
+import '@pnotify/mobile/dist/PNotifyMobile.css';
+// import '@pnotify/desktop/dist/PNotifyDesktop';
+import '@pnotify/core/dist/BrightTheme.css';
 
 const refs = {
   input: document.querySelector('#search__input'),
@@ -17,7 +22,13 @@ function handleSearch(e) {
   API.fetchCountry(query)
     .then(countries => {
       if (countries.length > 10) {
-        alert('Too many matches found. Please enter a more specific query');
+        error({
+          title: 'Too many matches found.',
+          text: 'Please enter a more specific query!',
+          styling: 'brighttheme',
+          delay: 1000,
+        });
+
         refs.cardContainer.innerHTML = '';
         refs.list.innerHTML = '';
       }
@@ -30,8 +41,16 @@ function handleSearch(e) {
         refs.list.innerHTML = '';
         renderCountryCard(countries);
       }
-
-      console.log(countries.length);
+      if (countries.status === 404) {
+        error({
+          title: 'No matches found.',
+          text: 'Please enter another query!',
+          styling: 'brighttheme',
+          delay: 1000,
+        });
+        refs.cardContainer.innerHTML = '';
+        refs.list.innerHTML = '';
+      }
     })
     .catch(onFetchError);
 }
@@ -47,7 +66,7 @@ function renderCountryCard(result) {
 }
 
 function onFetchError(error) {
-  alert('Something went wrong, try entering the country name in English');
+  console.log('Something went wrong, try entering the country name in English');
 }
 // const checkboxEl = document.querySelector('#theme-switch-toggle');
 // const bodyEl = document.querySelector('body');

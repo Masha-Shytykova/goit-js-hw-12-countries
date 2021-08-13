@@ -1,0 +1,60 @@
+h1 {
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+body {
+  background-color: #ebebeb;
+  color: #333333;
+}
+
+ul {
+  margin: 0;
+  padding-left: 20px;
+  list-style: disc;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: 200px;
+}
+
+.container {
+  margin-top: 100px;
+  padding: 15px;
+}
+
+.search__input {
+  margin-bottom: 20px;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card__content {
+  display: flex;
+
+  padding-left: 15px;
+}
+
+.profile__list {
+  margin-right: 25px;
+  list-style: none;
+  text-align: left;
+}
+.profile__item {
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+.profile__value {
+  font-weight: 400;
+}
+.tag-list__item {
+  font-weight: 400;
+  margin-left: 20px;
+}
